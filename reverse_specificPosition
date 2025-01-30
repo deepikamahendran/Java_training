@@ -1,0 +1,228 @@
+package demo;
+class node { 
+    node prev; 
+    int data; 
+    node next; 
+  
+    // A constructor 
+    node(int value) 
+    { 
+        this.prev = null; 
+        this.data = value; 
+        this.next = null; 
+    } 
+} 
+  class DoublelList{//class
+  
+      node head=null;
+      node tail=null;
+      
+      
+      // insertAtBeginning
+      
+      public void insertAtBeginning(int data)//step5
+      { 
+        node temp = new node(data); 
+        if (head == null) { 
+            head = temp; 
+            tail = temp; 
+        } 
+        else { 
+            temp.next = head; 
+            head.prev = temp; 
+            head = temp; 
+        } 
+     
+      } 
+      
+     //insertAtEnd
+     
+     public void insertAtEnd(int data) //step7
+    { 
+        node temp = new node(data); 
+        if (tail == null) { 
+            head = temp; 
+            tail = temp; 
+        } 
+        else { 
+            tail.next = temp; 
+            temp.prev = tail; 
+            tail = temp; 
+        } 
+    } 
+    
+    //insertAtPosition
+    
+    
+    public void insertAtPosition(int data, int position) //step9
+    { 
+        node temp = new node(data); 
+        if (position == 1) { 
+            insertAtBeginning(data); 
+        } 
+        else { 
+            node current = head; 
+            int currPosition = 1; 
+            while (current != null
+                   && currPosition < position) { 
+                current = current.next; 
+                currPosition++; 
+            } 
+            if (current == null) { 
+                insertAtEnd(data); 
+            } 
+            else { 
+                temp.next = current; 
+                temp.prev = current.prev; 
+                current.prev.next = temp; 
+                current.prev = temp; 
+            } 
+        } 
+    } 
+    public void reverse(){
+        node curr=head;
+     while(curr!=null){
+         curr.next=curr;
+     }
+     System.out.println(curr.data);
+     curr.prev=curr;
+    }
+    public void deleteAtBeginning() 
+    { 
+        
+  
+        if (head == tail) { 
+            head = null; 
+            tail = null; 
+            return; 
+        } 
+  else{
+        node temp = head; 
+        head = head.next; 
+        head.prev = null; 
+        temp.next = null; 
+    } 
+    }
+    
+    //deleteAtEnd
+    
+ public void deleteAtEnd() 
+    { 
+        if (tail == null) { 
+            return; 
+        } 
+  
+        if (head == tail) { 
+            head = null; 
+            tail = null; 
+            return; 
+        } 
+  
+        node temp = tail; 
+        tail = tail.prev; 
+        tail.next = null; 
+        temp.prev = null; 
+    } 
+    
+    //deleteAtSpecificPosition
+    
+    
+    public void deleteAtSpecificPosition(int pos) //dete0000
+    { 
+        
+        if (pos == 1) { 
+            deleteAtBeginning(); 
+           // return; 
+        } 
+  
+        node current = head; 
+        int count = 1; 
+  
+        while (current != null && count != pos) { 
+            current = current.next; 
+            count++; 
+        } 
+  
+        if (current == null) { 
+            System.out.println("Position wrong"); 
+            return; 
+        } 
+  
+        if (current == tail) { 
+            deleteAtEnd(); 
+            return; 
+        } 
+  
+        current.prev.next = current.next; 
+        current.next.prev = current.prev; 
+        current.prev = null; 
+        current.next = null; 
+    } 
+    
+    
+    
+    //display
+    
+    
+  public void display()//step11
+  { 
+        node temp = head; 
+        System.out.print("null <--> ");
+        while (temp != null) { 
+            
+            System.out.print(temp.data + " <--> "); 
+            temp = temp.next; 
+        } 
+        System.out.println("NULL"); 
+    }
+
+
+
+}
+
+
+//Main
+
+
+public class Display{//step 3
+    public static void main(String[] args){
+        DoublelList dl=new DoublelList();
+        System.out.println("insertAtBeginning");
+        dl.insertAtBeginning(1);//step 4
+        dl.display();
+        
+        System.out.println("insertAtEnd");
+        dl.insertAtEnd(4);//step 4
+        dl.display();
+        
+        System.out.println("insertAtPosition");
+        dl.insertAtPosition(2,2);//step 4
+        dl.display();
+        
+        
+        System.out.println("insertAtPosition");
+        dl.insertAtPosition(3,3);//step 4
+        dl.display();
+        
+      /*  System.out.println("deleteAtBeginning");
+        dl.deleteAtBeginning();//step8
+        dl.display();
+        
+        System.out.println("deleteAtEnd");
+        dl.deleteAtEnd();//step8
+        dl.display();
+       
+         
+      System.out.println("deleteAtSpecificPosition");
+        dl.deleteAtSpecificPosition(2);//step8
+        dl.display();*/
+    
+    
+    System.out.println("reverse");
+    dl.reverse();
+    dl.display();
+     
+     
+     
+}
+}
