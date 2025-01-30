@@ -1,0 +1,121 @@
+class Node                                 // syntax for node
+{
+    int data;
+    Node next;
+    Node prev;
+    Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+        this.prev=null;
+    }
+}
+class DLL
+{
+    Node head,tail;
+    public void Insertatbegining(int data)   // insert at begining
+    {
+        Node newNode = new Node(data);
+        if(head==null)
+        {
+            head=tail=newNode;
+        }
+        else
+        {
+            newNode.next=head;
+            head.prev=newNode;
+            head=newNode;
+        }
+    }
+    public void Insertatend(int data)      // insert at end
+    {
+        Node newNode = new Node(data);
+        if(tail==null)
+        {
+            head = tail=newNode;
+        }
+        else{
+            tail.next=newNode;
+            newNode.prev=tail;
+            tail=newNode;
+        }
+    }
+    public void deleteAtBegg()           //delete at beggining
+    {
+        if(head==tail)
+        {
+            head=null;
+            tail=null;
+        }
+        else{
+            Node temp=head;
+            head=head.next;
+            head.prev=null;
+            temp.next=null;
+        }
+        
+    }
+     public void deleteAtEnd(){           //delete at end
+        if(tail==null)
+        {
+            head=null;
+           tail=null;
+    }
+        else{
+            Node temp=tail;
+            tail=tail.prev;
+            temp.prev=null;
+            tail.next=null;
+        }
+        
+    }
+    public void display()                  //display
+    {
+        Node temp = head;
+        if(temp==null)
+        {
+            System.out.print("list is empty");
+        }
+        System.out.print("null<->");
+        while(temp!=null)
+        {
+            System.out.print(temp.data+"<->");
+             temp=temp.next;
+        }
+        System.out.println("null");
+    }
+}
+    public class Main                         //Main function
+    {
+    public static void main (String[] args) 
+    {
+        {
+            DLL doubly = new DLL();
+            System.out.println("Insertatbegining");
+            doubly.Insertatbegining(100);
+            doubly.display();
+            System.out.println("Insertatend");
+            doubly.Insertatend(200);
+            doubly.display();
+            System.out.println("Insertatend");
+            doubly.Insertatend(300);
+            doubly.display();
+            System.out.println("Insertatend");
+            doubly.Insertatend(400);
+            doubly.display();
+            System.out.println("Insertatend");
+            doubly.Insertatend(500);
+            doubly.display();
+            System.out.println("Insertatend");
+            doubly.Insertatend(600);
+            doubly.display();
+            System.out.println("Insertatend");
+            doubly.deleteAtBegg();
+            doubly.display();
+            System.out.println("deleteAtEnd");
+            doubly.deleteAtEnd();
+            doubly.display();
+        }
+    }
+}
+
