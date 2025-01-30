@@ -1,0 +1,36 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) 
+	{
+		Scanner a =new Scanner(System.in);
+		int n = a.nextInt();
+		int sqr = n*n;
+		System.out.println("square" +sqr);
+		int s=0;
+		while(sqr>0)
+		{
+		    int r=sqr%10;
+		    s=s*10+r;
+		    sqr/=10;
+		}
+		System.out.println("rev:"+s);
+		int sqrt = (int) Math.sqrt(s);
+		System.out.println("sqrt:"+sqrt);
+		int s1=0;
+		while(sqrt>0)
+		{
+		    int r=sqrt%10;
+		    s1=s1*10+r;
+		    sqrt/=10;
+		}
+		System.out.println("rev:" +s1);
+		if(s1==n)
+		{
+		    System.out.println("adam");
+		}
+		else{
+		    System.out.println("not");
+		}
+		}
+		}
