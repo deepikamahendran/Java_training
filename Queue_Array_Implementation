@@ -1,0 +1,59 @@
+package demo;
+class front
+{
+	int a[]=new int[5];
+	int front = -1;
+	int rear=-1;
+	
+	public void enqueue(int data)
+	{
+		if(front == a.length-1&&rear==a.length-1)
+		{
+			System.out.println("the queue  overflows");
+		}
+		
+		else
+		{
+			if(front == -1)
+			{
+				front =0;
+			}
+			rear++;
+			a[rear]=data;
+		}
+	}
+	public void dequeue()
+	{
+		if(front==-1)
+		{
+			System.out.println("the queue is underflow");
+		}
+		else
+		{
+			front++;
+		}
+	}
+		public void display()
+	{
+			System.out.println("the elements are:");
+		for(int i=front;i<=rear;i++)
+		{
+			System.out.println(a[i]+" ");
+			
+		}
+	}
+}
+public class Queue
+{
+public static void main(String args[])
+{
+	front s =new front();
+	s.enqueue(10);
+	s.enqueue(20);
+	s.enqueue(30);
+	s.enqueue(40);
+	s.enqueue(50);
+	s.dequeue();
+	s.display();
+}
+}
