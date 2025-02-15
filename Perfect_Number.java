@@ -1,7 +1,5 @@
 package assesment;
-
 import java.util.Scanner;
-
 public class perfect_Number 
 {
 	public static int sumOfDivisors(int num) 
@@ -32,7 +30,6 @@ public class perfect_Number
 	            return "Deficient Number";
 	        }
 	    }
-
 	    public static void main(String[] args) 
 	    {
 	        Scanner scanner = new Scanner(System.in);
