@@ -1,0 +1,78 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+class Node {
+    int data;
+    List<Node> children;
+
+    Node(int data) {
+        this.data = data;
+        this.children = new ArrayList<>();
+    }
+}
+
+public class Main {
+    Node root;
+
+    public void addChild(Node parent, int childData) {
+        Node child = new Node(childData);
+        parent.children.add(child);
+    }
+
+    public Node findNode(Node current, int value) {
+        if (current == null) return null;
+        if (current.data == value) return current;
+
+        for (Node child : current.children) {
+            Node found = findNode(child, value);
+            if (found != null) return found;
+        }
+        return null;
+    }
+
+    public void buildTree() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter root value: ");
+        int rootValue = scanner.nextInt();
+        root = new Node(rootValue);
+
+        while (true) {
+            System.out.print("Enter parent value to add a child (or -1 to stop): ");
+            int parentValue = scanner.nextInt();
+            if (parentValue == -1) break;
+
+            System.out.print("Enter child value: ");
+            int childValue = scanner.nextInt();
+
+            Node parentNode = findNode(root, parentValue);
+            if (parentNode != null) {
+                addChild(parentNode, childValue);
+            } else {
+                System.out.println("Parent node not found.");
+            }
+        }
+
+        scanner.close();
+    }
+
+    // Preorder traversal of the N-ary tree
+    public void preorder(Node node) {
+        if (node == null) return;
+
+        System.out.print(node.data + " ");
+        for (Node child : node.children) {
+            preorder(child);
+        }
+    }
+
+    public static void main(String[] args) {
+        Main tree = new Main();
+        tree.buildTree();
+
+        System.out.print("Preorder Traversal: ");
+        tree.preorder(tree.root);
+        System.out.println(); // For better output formatting
+    }
+}
